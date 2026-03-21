@@ -14,7 +14,7 @@ module tt_um_magnetofield_mips (
     output wire [7:0] uio_oe,    // direction (unused)
     input  wire       ena,       // design enable (ignore for core)
     input  wire       clk,       // main clock
-    input  wire       reset      // async active-low reset
+    input  wire       rst_n      // async active-low reset
 );
 
     // -----------------------------------------------------------
@@ -51,8 +51,8 @@ module tt_um_magnetofield_mips (
     // -----------------------------------------------------------
     // 4-phase instruction fetch FSM
     // -----------------------------------------------------------
-    always @(posedge clk or negedge reset) begin
-        if (!reset) begin
+	always @(posedge clk or negedge rst_n) begin
+		if (!rst_n) begin
             fetch_state    <= 0;
             imem_data_reg  <= 32'h00000000;
         end
@@ -91,7 +91,7 @@ module tt_um_magnetofield_mips (
 
     mips xmips_inst (
         .clk        (clk),
-        .rst      (!reset),
+		.rst      (!rst_n),
         .imem_addr  (imem_addr),
         .imem_data  (imem_data),
         .dmem_addr  (dmem_addr),
