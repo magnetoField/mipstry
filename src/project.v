@@ -656,5 +656,5 @@ module sign_extend
         always @(idata) begin : proc_sign_extend
                 odata = {{16{idata[15]}}, idata};
         end
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+//  wire _unused = &{ena, clk, rst_n, 1'b0};
 endmodule
