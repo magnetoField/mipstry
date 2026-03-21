@@ -29,7 +29,7 @@ module tt_um_magnetofield_mips (
 
     wire [31:0] dmem_addr;
     wire [31:0] dmem_wdata;
-    wire [31:0] dmem_rdata = 32'b0;   // DMEM not yet implemented externally
+    wire [31:0] dmem_rdata;   // DMEM not yet implemented externally
     wire        dmem_we;
 
     // -----------------------------------------------------------
