@@ -212,7 +212,6 @@ module dmem
 
         always @(posedge clk) begin
                 if(1'b1 == we) begin
-                        $display("dmem written at time %t, data=%08x", $time, wdata);
                         memdata[addr] = wdata;
                 end
         end
