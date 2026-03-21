@@ -18,3 +18,7 @@ Attach pins acordingly
 ## External hardware
 
 Hardware used in your project (e.g. PMOD, LED display, etc).
+
+## Pinout
+
+All pins go high
