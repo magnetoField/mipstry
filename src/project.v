@@ -16,7 +16,11 @@ module tt_um_magnetofield_mips (
     input  wire       clk,       // main clock
     input  wire       rst_n      // async active-low reset
 );
+    assign uio_out = 0;
+    assign uio_oe  = 0;
 
+  // List all unused inputs to prevent warnings
+    wire _unused = &{ena, clk, rst_n, 1'b0};
     // -----------------------------------------------------------
     // Internal wires between top and MIPS core
     // -----------------------------------------------------------
