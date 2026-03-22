@@ -29,7 +29,7 @@ module tt_um_magnetofield_mips (
 
     wire [31:0] dmem_addr;
     wire [31:0] dmem_wdata;
-    wire [31:0] dmem_rdata;   // DMEM not yet implemented externally
+    wire [31:0] dmem_rdata = 32'b0;   // DMEM not yet implemented externally
     wire        dmem_we;
 
     // -----------------------------------------------------------
@@ -108,7 +108,7 @@ module tt_um_magnetofield_mips (
 	 .clk( clk ),
 	 .we( dmem_we ),
 	 .rdata( dmem_rdata ),
-	 .addr( dmem_addr ),
+	 .addr( dmem_addr[6:0] ),
 	 .wdata( dmem_wdata )
     );
 
@@ -171,7 +171,7 @@ xdatapath_inst (
  .mem_write( dmem_we ),
  .pc( imem_addr[31:0] ),
  .reg_dst( reg_dst ),
- .alu_result( dmem_addr[31:0] ),
+ .alu_result( dmem_addr ),
  .reg_write( reg_write ),
  .write_data( dmem_wdata[31:0] ),
  .instr( imem_data[31:0] ),
@@ -196,7 +196,7 @@ module dmem
   input wire clk,
   input wire we,
   output wire [31:0] rdata,
-  input wire [31:0] addr,
+  input wire [6:0] addr,
   input wire [31:0] wdata
 );
 // noconn rdata[31:0]
@@ -212,7 +212,7 @@ module dmem
 
         always @(posedge clk) begin
                 if(1'b1 == we) begin
-                        memdata[addr] = wdata;
+                        memdata[addr] <= wdata;
                 end
         end
 
@@ -368,9 +368,9 @@ xsign_extend_inst (
   assign pc_next = jump ? pc_jump : (pc_src ? pc_branch : pc_plus_4);
   always @(posedge clk) begin : proc_pc
     if(~rst) begin
-      pc = pc_next;
+      pc <= pc_next;
     end else begin
-      pc = 32'h00000000;
+      pc <= 32'h00000000;
     end
   end
   wire [4:0] rt;
@@ -516,7 +516,7 @@ module regfile
 
         always@ (posedge clk) begin
                 if(1'b1 == rw) begin
-                        regmem[addr3] = wdata;
+                        regmem[addr3] <= wdata;
                 end
         end
 
