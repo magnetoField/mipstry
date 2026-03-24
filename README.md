@@ -4,7 +4,7 @@
 
 - [Read the documentation for project](docs/info.md)
   
-![img](Screenshot 2026-03-24 093700.png)
+![img](/Screenshot.png)
 
 ## What is Tiny Tapeout?
 
