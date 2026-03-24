@@ -1,6 +1,6 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# 32-bit mips processor implemented in Tiny Tapeout 8x4 area piece
+# 32-bit MIPS CPU implemented in Tiny Tapeout 8x4 area piece
 
 - [Read the documentation for project](docs/info.md)
 
